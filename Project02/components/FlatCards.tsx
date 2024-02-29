@@ -26,7 +26,7 @@ export default function FlatCards() {
 const styles = StyleSheet.create({
   headingText: {
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 5,
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -59,3 +59,7 @@ const styles = StyleSheet.create({
 });
 
 // view is a div in mob
+
+// as the card increases flat cards gets squezed up
+
+// so thats why we ll see now how to elevate them in elevatedcardds with scrolview on cards
