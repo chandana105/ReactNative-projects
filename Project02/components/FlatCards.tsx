@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#000',
   },
   container: {
     flex: 1,

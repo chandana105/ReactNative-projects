@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
+    color: '#000',
   },
   cardContainer: {
     width: 350,
