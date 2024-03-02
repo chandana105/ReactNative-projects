@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   socialLinkButton: {
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 10,
