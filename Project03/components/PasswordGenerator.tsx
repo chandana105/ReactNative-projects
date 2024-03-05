@@ -1,5 +1,4 @@
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -26,7 +25,69 @@ export default function PasswordGenerator() {
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
 
-  console.log({symbols});
+  //   now to generate the password using the inputs as what sohuld be the pass length and whether shoudl incue lowercase etc
+
+  const generatePasswordString = (passwordLength: number) => {
+    // eg:- pasword :- #1Aqwert%
+    // need to generate this type of random password from given inputs sleected
+
+    let charactersList = '';
+
+    const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const digitChars = '0123456789';
+    const specialChars = '!@#$%^&*()_+';
+
+    // first we are selectign ki user ne kya select kiya hai :- uske based pr we are adding vlaues to characterslist
+
+    if (upperCase) {
+      charactersList += upperCaseChars;
+    }
+    if (lowerCase) {
+      charactersList += lowerCaseChars;
+    }
+    if (numbers) {
+      charactersList += digitChars;
+    }
+    if (symbols) {
+      charactersList += specialChars;
+    }
+    // by default lowercase is true, but if user make it false , then make careteslist as lowercae and show chec k on leoercase
+    if (!upperCase && !numbers && !symbols) {
+      charactersList += lowerCaseChars;
+      setLowerCase(true);
+    }
+
+    const passwordResult = createPassword(charactersList, passwordLength);
+    // jo result return hokr aayega :- vo password hoga :- toh uso setPasswrod mein krna
+
+    setPassword(passwordResult);
+    setIsPasswordGenerated(true);
+  };
+
+  const createPassword = (characters: string, passwordLength: number) => {
+    let result = '';
+
+    // first lets find a random index by going thorgh loop paswordlength times
+    // and then at every iteration , we ll get index and based on that idnex we will get the letter at the idnex and keeps on adding in the reuslt
+    // jsut a random wahy of maing password
+
+    for (let i = 0; i < passwordLength; i++) {
+      const characterIndex = Math.round(Math.random() * characters.length);
+
+      result += characters.charAt(characterIndex);
+    }
+    return result;
+  };
+
+  const resetPasswordState = () => {
+    setPassword('');
+    setIsPasswordGenerated(false);
+    setUpperCase(false);
+    setLowerCase(true);
+    setNumbers(false);
+    setSymbols(false);
+  };
 
   return (
     <View>
@@ -36,6 +97,8 @@ export default function PasswordGenerator() {
         validationSchema={passwordValidationSchema}
         onSubmit={values => {
           console.log({values});
+          //   values.passle is string so to convert into nubmer + or Number
+          generatePasswordString(+values.passwordLength);
         }}>
         {({
           values,
@@ -65,6 +128,7 @@ export default function PasswordGenerator() {
                 <TextInput
                   style={styles.textInput}
                   value={values.passwordLength}
+                  //   here handelChange is given as a hook fro mformik
                   onChangeText={handleChange('passwordLength')}
                   placeholder="Ex. 3"
                   keyboardType="numeric"
@@ -133,16 +197,22 @@ export default function PasswordGenerator() {
                   onPress={() => {
                     handleReset();
                     //   plus if u are having more than thre buttons can have ur own fxns like here having more inoput things
-                    // TODO: FNX
+                    resetPasswordState();
                   }}
                   style={[styles.button, styles.resetButton]}>
                   <Text style={styles.buttonText}> Reset</Text>
                 </TouchableOpacity>
               </View>
               {isPasswordGenerated && (
-                <View style={styles.resultContainer}>
-                  <Text numberOfLines={3} style={styles.passwordResult}>
-                    result
+                <View style={[styles.resultCard, styles.resultCardElevated]}>
+                  <Text style={styles.subTitle}>Password Generated :</Text>
+                  <Text style={styles.subTitle}>Long Press to copy</Text>
+
+                  <Text
+                    selectable={true}
+                    numberOfLines={3}
+                    style={styles.passwordResult}>
+                    {password}
                   </Text>
                 </View>
               )}
@@ -219,15 +289,35 @@ const styles = StyleSheet.create({
   disabledButton: {
     opacity: 0.5,
   },
-  resultContainer: {
+  resultCard: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    gap: 10,
     padding: 12,
+    borderRadius: 10,
+    backgroundColor: '#EAF0F1',
+  },
+  resultCardElevated: {
+    elevation: 4,
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowColor: '#ccc',
+    shadowOpacity: 1,
+    shadowRadius: 10,
+  },
+  subTitle: {
+    color: '#000',
+    fontWeight: 'bold',
   },
   passwordResult: {
-    backgroundColor: '#fd0',
+    color: '#000',
+    fontSize: 24,
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
   },
 });
 
