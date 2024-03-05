@@ -3,12 +3,13 @@ import React from 'react';
 import PasswordGenerator from './components/PasswordGenerator';
 
 const App = () => {
+  console.log('HEY APP');
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <ScrollView keyboardShouldPersistTaps="handled">
+      <SafeAreaView>
         <PasswordGenerator />
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
