@@ -67,3 +67,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
+
+// can have made different shapes like circle and square and trianle and on press me , background  is gettign changed
