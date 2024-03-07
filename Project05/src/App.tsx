@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import React, {PropsWithChildren, useState} from 'react';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
 import DiceOne from '../assets/One.png';
 import DiceTwo from '../assets/Two.png';
@@ -31,6 +32,11 @@ const Dice = ({imageUrl}: DiceProps): JSX.Element => {
 
 export default function App() {
   const [diceImage, setDiceImage] = useState<ImageSourcePropType>(DiceOne);
+  // Optional configuration
+  const options = {
+    enableVibrateFallback: true,
+    ignoreAndroidSystemSettings: false,
+  };
 
   const rollDiceOnTop = () => {
     let randomNumber = Math.floor(Math.random() * 6 + 1);
@@ -38,30 +44,30 @@ export default function App() {
     switch (randomNumber) {
       case 1:
         setDiceImage(DiceOne);
-        return;
+        break;
       case 2:
         setDiceImage(DiceTwo);
-        return;
+        break;
       case 3:
         setDiceImage(DiceThree);
-        return;
+        break;
       case 4:
         setDiceImage(DiceFour);
-        return;
+        break;
       case 5:
         setDiceImage(DiceFive);
-        return;
+        break;
       case 6:
         setDiceImage(DiceSix);
-        return;
+        break;
 
       default:
         setDiceImage(DiceOne);
-        return;
+        break;
     }
+    // Trigger haptic feedback
+    ReactNativeHapticFeedback.trigger('impactLight', options);
   };
-
-  console.log('hlo');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -105,3 +111,12 @@ const styles = StyleSheet.create({
 });
 
 // Haptic Feedback and Image
+
+// TRIED :- EXPO FOR HAPTIC FEEDBACK CHECK , BUT FOR IT EXPO HAS ANOTHER PACKAGE
+// https://docs.expo.dev/versions/latest/sdk/haptics/
+// SO LEAVING THAT IMPLEMETATION, WILL WORK IN CONECTING MY DEVICE TO RECT NATIVE
+
+// HERE I COVERED :- EXPO WORKING , HOW TO USE EXPO FOR IT
+// https://chat.openai.com/share/ad140d4d-492e-4830-a7ff-d1f51c2aebcb
+
+// so while cliking onroll the deivce, u ll feel vibrations
