@@ -2,37 +2,82 @@ import {
   FlatList,
   Pressable,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {currencyByRupee} from '../constants';
 import CurrencyCard from './components/CurrencyCard';
+import Snackbar from 'react-native-snackbar';
 
 export default function App() {
+  const [inputValue, setInputValue] = useState('');
+  const [result, setResult] = useState('');
+  const [targetCurrency, setTargetCurrency] = useState('');
+
+  // console.log({inputValue});
+
+  const handleCurrencyButtonPressed = (targetValue: Currency) => {
+    // console.log(targetValue);
+    if (!inputValue) {
+      return Snackbar.show({
+        text: 'Enter a value to convert',
+        backgroundColor: '#ea7773',
+        textColor: '#000',
+      });
+    }
+
+    const inputAmount = parseFloat(inputValue);
+
+    if (!isNaN(inputAmount)) {
+      const convertedValue = inputAmount * targetValue.value;
+      const resultValue = `${targetValue.symbol} ${convertedValue.toFixed(2)}`;
+      setResult(resultValue);
+      setTargetCurrency(targetValue.name);
+    } else {
+      return Snackbar.show({
+        text: 'NOT a valid number to convert',
+        backgroundColor: '#F4BE2C',
+        textColor: '#000000',
+      });
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
+      <StatusBar />
       <View style={styles.container}>
         <Text style={styles.textSymbol}>₹</Text>
         <TextInput
-          numberOfLines={1}
+          maxLength={14} //only upto 14 digits can be entered
           placeholder="Enter amount in rupees"
           style={styles.textInput}
           keyboardType="number-pad"
+          clearButtonMode="always" //always , showing cross sign beside input to clear input
+          value={inputValue}
+          onChangeText={setInputValue}
         />
       </View>
-      <View>
-        <Text style={styles.resultText}>Result</Text>
-      </View>
+      {result && (
+        <View>
+          <Text style={styles.resultText}>{result}</Text>
+        </View>
+      )}
       <View style={styles.bottomContainer}>
         <FlatList
           numColumns={3}
           data={currencyByRupee}
           keyExtractor={item => item.name}
           renderItem={({item}) => (
-            <Pressable style={[styles.button]}>
+            <Pressable
+              style={[
+                styles.button,
+                targetCurrency === item.name && styles.selected,
+              ]}
+              onPress={() => handleCurrencyButtonPressed(item)}>
               <CurrencyCard {...item} />
             </Pressable>
           )}
@@ -54,9 +99,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    marginHorizontal: 90,
+    marginHorizontal: 70,
     marginTop: 20,
-    width: 200,
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
@@ -66,7 +110,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   textInput: {
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
     flex: 1,
     color: '#000',
     fontSize: 16,
