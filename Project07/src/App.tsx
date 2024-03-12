@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Icons from './components/Icons';
 import Snackbar from 'react-native-snackbar';
 
@@ -15,6 +15,12 @@ export default function App() {
   const [gameState, setGameState] = useState(new Array(9).fill('empty', 0, 9));
   const [gameWinner, setGameWinner] = useState<string>('');
   const [isCross, setIsCross] = useState<boolean>(false);
+
+  console.log({gameState});
+
+  useEffect(() => {
+    checkWinner();
+  }, [gameState]);
 
   const changeItem = (itemNumber: number) => {
     // first we wil see on click of any item or sqaure box , ki is game over ? or not ie kya koi game winer hai
@@ -26,13 +32,20 @@ export default function App() {
       });
     }
 
+    // what if game is not winned by somebody
     // 3rd index pr click kiya agr vo empty hai toh proceed kro , nhi toh move to else part
     // gameState[3]
     if (gameState[itemNumber] === 'empty') {
-      console.log({isCross});
-      gameState[itemNumber] = isCross ? 'cross' : 'circle';
+      // console.log({isCross});
+      const updatedGameState = [...gameState];
+      // we are settign on that particular pos ki agr isCross ftrue hai rtoh cross ki hi turn hogi, other wise curlce ki
+      updatedGameState[itemNumber] = isCross ? 'cross' : 'circle';
+
+      // Toggle the player turn (isCross state) and update the state
       setIsCross(!isCross);
+      setGameState(updatedGameState);
     } else {
+      // other case can be ki frist we checked is empty, ab next ki agr empty na ho (menas chahe circle ho ya cross still cant cliked so whole scenerio conditons checked in one go)
       return Snackbar.show({
         text: 'Position is already filled',
         backgroundColor: 'red',
@@ -41,6 +54,7 @@ export default function App() {
     }
 
     // toh ye sab hine ke baad, phir se winner check kro
+    // we areechecking on top that is game winner, but if not toh after everytihgn evauting above:- we ll again check is winner
     checkWinner();
   };
 
@@ -109,6 +123,7 @@ export default function App() {
       <StatusBar />
       {/* header info status */}
 
+      {/* if there is no gamewinner , we ll say whose game it  */}
       <View
         style={[
           styles.gameStatusHeading,
@@ -136,6 +151,7 @@ export default function App() {
         renderItem={({item, index}) => (
           <Pressable
             key={index}
+            // in pressabel hee, we want to keep track of where it actually gets pressed so therefore passing index
             onPress={() => changeItem(index)}
             style={[
               styles.gameItem,
@@ -158,9 +174,10 @@ export default function App() {
       />
 
       {/* the button , for start or reload the game */}
+      {/* functionality id same , just the text changed */}
       <Pressable style={styles.gameButton} onPress={reloadGame}>
         <Text style={styles.gameButtonText}>
-          {gameWinner ? 'Start a New Game' : 'Reload game'}
+          {gameWinner ? 'Start new Game' : 'Reload the game'}
         </Text>
       </Pressable>
     </SafeAreaView>
@@ -230,3 +247,6 @@ const styles = StyleSheet.create({
 });
 
 // https://medium.com/clarusway/setting-up-react-native-vector-icons-for-ios-a5d57e78cdb2
+// https://www.youtube.com/watch?v=qU_gdQ1FvjM
+
+// can take further level , by clikjg on sounds ,while cliking on button of array

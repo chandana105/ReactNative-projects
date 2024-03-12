@@ -6,7 +6,6 @@ type IconProps = PropsWithChildren<{
 }>;
 
 export default function Icons({name}: IconProps) {
-  console.log({name});
   switch (name) {
     case 'circle':
       return <Icon name="circle-thin" size={38} color="#F7CD2E" />;
