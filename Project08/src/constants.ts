@@ -17,7 +17,7 @@ export const playlistData: Track[] = [
     album: 'Shershaah',
     artwork:
       'https://c.saavncdn.com/238/Shershaah-Original-Motion-Picture-Soundtrack--Hindi-2021-20210815181610-500x500.jpg',
-    url: require('./assets/audio/2Mukhto kor deo.mpeg'),
+    url: require('./assets/audio/2Mukhtokordeo.mpeg'),
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const playlistData: Track[] = [
     album: 'Brahmastra',
     artwork:
       'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg',
-    url: require('./assets/audio/3Rewrite the stars.mpeg'),
+    url: require('./assets/audio/3Rewritethestars.mpeg'),
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ export const playlistData: Track[] = [
     album: 'Pal Pal Dil Ke Paas',
     artwork:
       'https://c.saavncdn.com/328/Pal-Pal-Dil-Ke-Paas-Hindi-2019-20200420150444-500x500.jpg',
-    url: require('./assets/audio/4Hasdi tu reh soniye.mpeg'),
+    url: require('./assets/audio/4Hasditurehsoniye.mpeg'),
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ export const playlistData: Track[] = [
     album: 'Pathaan',
     artwork:
       'https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.jpg',
-    url: require('./assets/audio/6Doctor Slump OST 1-6.m4a'),
+    url: require('./assets/audio/6DoctorSlumpOST1-6.m4a'),
   },
 ];
 

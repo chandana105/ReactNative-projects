@@ -1,17 +1,50 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {ActivityIndicator, SafeAreaView, StyleSheet, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {setupPlayer, addTrack} from '../musicPlayerServices';
 
 export default function App() {
+  const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
+
+  // since setuplayer is an async fxn , so its result also t obe recorded here as async
+  const setup = async () => {
+    let isSetup = await setupPlayer();
+
+    if (isSetup) {
+      // is player is ready proceed with adding tracks
+      await addTrack();
+    }
+
+    console.log({isSetup});
+
+    // else humein by defualt isplayerready mein vlaue bhejni resturend from setuplayer
+    setIsPlayerReady(isSetup);
+  };
+
+  // on the start of app we need the results
+  useEffect(() => {
+    setup();
+  }, []);
+
+  if (!isPlayerReady) {
+    <SafeAreaView>
+      <ActivityIndicator />
+    </SafeAreaView>;
+  }
+
   return (
-    <View>
+    <SafeAreaView>
       <Text>App</Text>
       <Icon name="logout" color="#fd0" size={30} />
-    </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 /**
  * there are entrie so much steps for playing music
@@ -25,4 +58,9 @@ const styles = StyleSheet.create({});
  * 1. is my player ready ? (coz just that ur app has been initated doesnt mean ur player is also gone be ready at same time , defiitley it takes osme time for capturing the memory and all of that )
  * 2. aretracks added to the player queue ? (are they areready or in palyer quee as this is going to takre the time)
  * 3.am i listenign to palye events ? (thereare many events )
+ */
+
+/**
+ * so , now our playback service is set , now we  want to render our music by usng it
+ * so  for mausic to get played , we want to things from servie :- is player is ready for m setupplayer fxn and if its reday then we ahve to putthe tracks on it so addTrack needed
  */

@@ -3,16 +3,17 @@ import {playlistData} from './src/constants';
 
 // 1st step :- playback service to create ( which can be likehere a normal fxn)
 export const playbackService = async () => {
-  TrackPlayer.addEventListener(Event.RemotePause, TrackPlayer.pause());
+  TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause());
 
-  TrackPlayer.addEventListener(Event.RemotePlay, TrackPlayer.play());
+  TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play());
 
-  TrackPlayer.addEventListener(
-    Event.RemotePrevious,
+  TrackPlayer.addEventListener(Event.RemotePrevious, () =>
     TrackPlayer.skipToPrevious(),
   );
 
-  TrackPlayer.addEventListener(Event.RemoteNext, TrackPlayer.skipToNext());
+  TrackPlayer.addEventListener(Event.RemoteNext, () =>
+    TrackPlayer.skipToNext(),
+  );
 };
 
 /**
