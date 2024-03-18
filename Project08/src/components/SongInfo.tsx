@@ -8,6 +8,12 @@ type SongInfoProps = PropsWithChildren<{
 }>;
 
 export default function SongInfo({track}: SongInfoProps) {
+  console.log({track});
+
+  if (!track) {
+    return null; // Render nothing if track is undefined
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -27,8 +33,8 @@ const styles = StyleSheet.create({
     width: '90%',
     marginTop: 18,
 
-    flexDirection: 'row',
-    alignItems: 'baseline',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   name: {

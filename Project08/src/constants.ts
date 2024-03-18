@@ -1,58 +1,62 @@
 import {Track} from 'react-native-track-player';
 
+// import Portrait from './assets/audio/1Portrait.mpeg';
+
 export const playlistData: Track[] = [
   {
     id: 1,
-    title: 'Maan Meri Jaan',
-    artist: 'King',
-    album: 'Champagne Talk',
+    title: 'Portrait',
+    artist: 'Joe Layne',
+    album: 'Happiness OST',
     artwork:
-      'https://c.saavncdn.com/734/Champagne-Talk-Hindi-2022-20221008011951-500x500.jpg',
+      'https://lh3.googleusercontent.com/KOGuuKrjiK171q1mXoNIKd8T4xVyVUG6IZqAea9Ub7Uo1jc4tAFE7uFzAWupw30GNXQfNO1EozJy40Q=w544-h544-l90-rj',
     url: require('./assets/audio/1Portrait.mpeg'),
   },
   {
     id: 2,
-    title: 'Raataan Lambiyan',
-    artist: 'Tanishk Bagchi, Asees Kaur',
-    album: 'Shershaah',
+    title: 'Mukhto Kore Dao',
+    artist: 'Arijit Singh',
+    album: 'Single',
     artwork:
-      'https://c.saavncdn.com/238/Shershaah-Original-Motion-Picture-Soundtrack--Hindi-2021-20210815181610-500x500.jpg',
+      'https://lh3.googleusercontent.com/uehXYhBrA2347vzsKSA_shozUBvCNUxd7sZwOr_vAYQoTsppAtn41_Z5qL8N1Paqa1HGO6ERNw1jtR-n=w544-h544-l90-rj',
     url: require('./assets/audio/2Mukhtokordeo.mpeg'),
   },
   {
     id: 3,
-    title: 'Kesariya',
-    artist: 'Arijit Singh, Amitabh Bhattacharya',
-    album: 'Brahmastra',
+    title: 'Rewrite the Stars',
+    artist: 'Zac Efron, Zendaya',
+    album: 'The Greatest Showman',
     artwork:
-      'https://c.saavncdn.com/191/Kesariya-From-Brahmastra-Hindi-2022-20220717092820-500x500.jpg',
+      'https://lh3.googleusercontent.com/JCSCUL9b2MigEbo6gcGJpjq3TSAxv5QMmiHiBrPZLAQeO8dclmrUu47hq_CH4OaTVvdfy0HMLa1A8sU=w544-h544-l90-rj',
     url: require('./assets/audio/3Rewritethestars.mpeg'),
   },
   {
     id: 4,
-    title: 'Title Track',
-    artist: 'Arijit Singh, Parampara Tandon',
-    album: 'Pal Pal Dil Ke Paas',
+    title: 'Hasdi tu Reh Sohniye',
+    artist: 'Parmish Verma',
+    album: 'Dil Diyan Gallan',
     artwork:
-      'https://c.saavncdn.com/328/Pal-Pal-Dil-Ke-Paas-Hindi-2019-20200420150444-500x500.jpg',
+      'https://i.ytimg.com/vi/Xr-lpLs9TgM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n9y-AchTOmru05lDvuBnsCMd9ulg',
+
     url: require('./assets/audio/4Hasditurehsoniye.mpeg'),
   },
   {
     id: 5,
-    title: 'Besharam Rang',
-    artist: 'Vishal & Shekhar, Shilpa Rao',
-    album: 'Pathaan',
+    title: 'Hass Hass',
+    artist: 'Diljit Dosanjh, Sia, Greg Kurstin',
+    album: 'Single',
     artwork:
-      'https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.jpg',
+      'https://lh3.googleusercontent.com/C1yu1R5glYqTipPC5svpAlmQ0-gQ8VhwCTYB9P34-gnfXoA2PxpBic2u-_AMl0DdPV-X8yzBnmEgPu3COQ=w544-h544-s-l90-rj',
     url: require('./assets/audio/5HassHass.mpeg'),
+    // url: require('./assets/audio/Hass Hass - Diljit Dosanjh_320(Ghantalele.com).mp3'),
   },
   {
     id: 6,
-    title: 'Doctor Slump',
-    artist: 'Vishal & Shekhar, Shilpa Rao',
-    album: 'Pathaan',
+    title: 'Doctor Slump OST[1-6]',
+    artist: 'Seulgi, Hynn, Chen , Junggigo, Dayoung,Eden, Park Hyngshik ',
+    album: 'Doctor Slump',
     artwork:
-      'https://c.saavncdn.com/807/Pathaan-Hindi-2022-20221222104158-500x500.jpg',
+      'https://lh3.googleusercontent.com/OuauPQzlHe6iVQfEO0jK18-cmAycy0zA7r1mTbftl1NxoLUwYfaMyiOpEFX8ywjSpQwgEpqDk6frDdez=w544-h544-l90-rj',
     url: require('./assets/audio/6DoctorSlumpOST1-6.m4a'),
   },
 ];

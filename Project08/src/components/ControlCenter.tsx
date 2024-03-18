@@ -36,7 +36,7 @@ export default function ControlCenter() {
     await TrackPlayer.skipToNext();
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Pressable onPress={skipToPrevious}>
         <Icon name="skip-previous" size={40} style={styles.icon} />
       </Pressable>

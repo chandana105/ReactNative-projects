@@ -1,7 +1,12 @@
-import {ActivityIndicator, SafeAreaView, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {setupPlayer, addTrack} from '../musicPlayerServices';
+import MusicPlayer from './screens/MusicPlayer';
 
 export default function App() {
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
@@ -33,9 +38,9 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView>
-      <Text>App</Text>
-      <Icon name="logout" color="#fd0" size={30} />
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'dark-content'} />
+      <MusicPlayer />
     </SafeAreaView>
   );
 }
@@ -71,3 +76,7 @@ const styles = StyleSheet.create({
  * 2.song info :- simpley track, (constants fike)
  * 3. installing reactnativecommunity slider
  */
+
+// after making comp's we ll combine everythgin on a sep screen
+
+// TODO: SOME BUGS:- IN IOSSIMIUALTOR .MP3 /.MPEG FIELS DIDINT PLAYED
