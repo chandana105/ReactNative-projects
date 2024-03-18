@@ -64,3 +64,10 @@ const styles = StyleSheet.create({
  * so , now our playback service is set , now we  want to render our music by usng it
  * so  for mausic to get played , we want to things from servie :- is player is ready for m setupplayer fxn and if its reday then we ahve to putthe tracks on it so addTrack needed
  */
+
+/**
+ * now we ll be building three comp's for our sportify musci app
+ * 1. control center :- easy (jsut play puase, next previsou btns and we ll be using the track of the package isntlaled , eventswe ar e justi listneing to it nad jsut bring tiand pass it on to there)
+ * 2.song info :- simpley track, (constants fike)
+ * 3. installing reactnativecommunity slider
+ */
