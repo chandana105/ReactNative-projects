@@ -30,6 +30,13 @@ export default function Home({navigation}: HomeProps) {
         //     productId: '65',
         //   })
         // }
+
+        // then it replaces Home from stack and back btn not visible plsu go back () fnxs doens not work for mdetuasl screen
+        // onPress={() =>
+        //   navigation.replace('Details', {
+        //     productId: '65',
+        //   })
+        // }
       />
     </View>
   );
@@ -59,3 +66,5 @@ const styles = StyleSheet.create({
  push is super easy, but it keeps on addign layers on it agai nand agian in staxk
  eg : - in isntagram we are keep on goign profielisntdie profiel : calback hell profiel ehell
  */
+
+//  THIS NAVAIGTION PROPS :-  there are two ways we can hav it : first as pros secodn by usenavagot hook
