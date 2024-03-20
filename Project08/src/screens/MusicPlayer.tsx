@@ -1,10 +1,6 @@
 import {Dimensions, FlatList, Image, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
-import TrackPlayer, {
-  Event,
-  Track,
-  useTrackPlayerEvents,
-} from 'react-native-track-player';
+import {Event, Track, useTrackPlayerEvents} from 'react-native-track-player';
 import SongInfo from '../components/SongInfo';
 import SongSlider from '../components/SongSlider';
 import ControlCenter from '../components/ControlCenter';
